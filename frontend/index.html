@@ -1,0 +1,33 @@
+<html>
+	<head>
+		<title>Davide Paci - Progetto di Test</title>
+		<meta charset="utf-8"/>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<style type="text/css"></style>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+        <!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="css/style.css">
+	</head>
+	<body>
+        <div class="container">
+            <div class="row h-100">
+                <div class="col-12 no-gutters background d-flex">
+                    <h1 class="text-white my-auto mx-auto">Progetto di Test</h1>
+                    <button id="sendButton" class="btn btn-primary my-auto mx-auto">Invio JSON tramite AJAX</button>
+                </div>
+            </div>
+        </div>
+	</body>
+    <script>
+        document.getElementById("sendButton").addEventListener("click", function(){
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "http://127.0.0.1:3000/api/send", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.send(JSON.stringify([{id: 1, value: 10},{id: 2, value: 30}]));
+        });
+    </script>
+</html>
