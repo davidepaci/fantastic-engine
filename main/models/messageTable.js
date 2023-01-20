@@ -1,0 +1,2 @@
+const schema = new mongoose.Schema({ idMessage: Number, message: String, idReference: Number, referenceDateTime: Date, createDateTime: { type: Date, default: Date.now()}, updateDateTime: Date});
+const Tank = mongoose.model('MessageTable', schema);
