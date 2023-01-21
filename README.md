@@ -11,4 +11,3 @@ Hiring test project
 - Eseguire `yarn start` da un qualsiasi terminale nelle cartelle 'main' e 'satellite'
 - Aprire la pagina `index.html` nella cartella 'frontend' per inviare il messaggio
 - Controllare il risultato attraverso una qualsiasi connessione a MongoDB. La più semplice è attraverso MongoDB Compass
->>>>>>> 556c33c32f7145e55dddb6c92bcb75647e51295a
