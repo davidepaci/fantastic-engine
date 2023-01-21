@@ -6,6 +6,7 @@
 const mongoose = require('mongoose');
 const messageTable = require('../models/messageTable.js');
 require('dotenv').config()
+const redis = require('redis');
 
 const saveAndSend = ((req, res) => {
     try {
@@ -29,6 +30,8 @@ const saveAndSend = ((req, res) => {
         for (let i = 0; i < req.body.length; i++) {
             sum += req.body[i].value;
         }
+        // send req.body through redis
+        publisher.publish('bus', JSON.stringify({ idMessage: randomInt, value: sum }));
         res.sendStatus(200);
     } catch (e) {
         console.log(e);
