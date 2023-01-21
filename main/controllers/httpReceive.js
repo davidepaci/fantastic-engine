@@ -8,10 +8,21 @@ const messageTable = require('../models/messageTable.js');
 require('dotenv').config()
 const redis = require('redis');
 
-const saveAndSend = ((req, res) => {
+const publisher = redis.createClient({
+    legacyMode: true,
+    socket: {
+        port: 6379,
+        host: "127.0.0.1"
+    }
+})
+
+publisher.connect();
+
+const saveAndSend = (async (req, res) => {
     try {
         console.log(req.body)
 
+        mongoose.set('strictQuery', false);
         mongoose.connect(process.env.MONGO_URI1, { useNewUrlParser: true, useUnifiedTopology: true });
         // generate randomId
         let randomInt = Math.floor(Math.random() * (1000000 - 1 + 1)) + 1;
@@ -32,6 +43,7 @@ const saveAndSend = ((req, res) => {
         }
         // send req.body through redis
         publisher.publish('bus', JSON.stringify({ idMessage: randomInt, value: sum }));
+
         res.sendStatus(200);
     } catch (e) {
         console.log(e);

@@ -4,6 +4,7 @@ const cors = require('cors');
 const app = express();
 
 const httpController = require('./controllers/httpReceive.js');
+const busController = require('./controllers/busReceive.js');
 
 app.use(cors());
 app.use(express.json());
